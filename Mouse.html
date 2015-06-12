@@ -1,0 +1,44 @@
+<canvas id="tela" width="600" height="400"></canvas>
+<meta charset ="UTF-8">
+
+<script>
+
+
+var tela = document.getElementById("tela");
+var c = tela.getContext("2d");
+
+
+c.fillStyle = "gray"; 		//	define a cor
+c.fillRect(0, 0, 600, 400); // (angulo x, angulo y, largura da tela, altura da tela)
+
+var atira = function(evento) {
+	var x = evento.pageX - tela.offsetLeft; // função utilizada para deixar o eixo x como 0.
+	var y = evento.pageY - tela.offsetTop;  // funcção utilizada para deixar o eixo y como 0.
+
+	c.fillStyle = "blue";
+	c.beginPath();
+	c.arc(x, y, 5, 0, 2 * 3.14);
+	c.fill();
+
+	console.log("Alguém clicou no canvas! " + x + ", " + y);
+
+}
+
+var atiraRight = function(evento) {
+	var x = evento.pageX - tela.offsetLeft; // função utilizada para deixar o eixo x como 0.
+	var y = evento.pageY - tela.offsetTop;  // funcção utilizada para deixar o eixo y como 0.
+
+	c.fillStyle = "red";
+	c.beginPath();
+	c.arc(x, y, 5, 0, 2 * 3.14);
+	c.fill();
+
+	console.log("Alguém clicou no canvas! " + x + ", " + y);
+	evento.preventDefault(); // evento que cancela abrir o menu do botão direito
+}
+
+tela.onclick = atira;
+tela.oncontextmenu = atiraRight;
+
+
+</script>
